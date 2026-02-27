@@ -1,0 +1,42 @@
+{% extends "greeter/base.html" %}
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+  <section class="card">
+    <h1 class="h1">Введите имя</h1>
+
+    <form method="post" class="form">
+      {% csrf_token %}
+      <div class="field">
+        <label class="label" for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+        {{ form.name }}
+        {% if form.name.errors %}
+          <div class="error">
+            {{ form.name.errors|striptags }}
+          </div>
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn">Submit</button>
+    </form>
+
+    {% if greeting %}
+      <div class="greeting">
+        {{ greeting }}
+      </div>
+    {% endif %}
+  </section>
+
+  <section class="card">
+    <h2 class="h2">Последние имена (до 10)</h2>
+    {% if recent_names %}
+      <ul class="list">
+        {% for item in recent_names %}
+          <li class="list-item">{{ item.name }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="muted">Список пуст</div>
+    {% endif %}
+  </section>
+{% endblock %}

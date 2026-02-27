@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Здарова{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'greeter/styles.css' %}">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="brand">Привет</div>
+    </header>
+
+    {% block content %}{% endblock %}
+    <footer class="footer">
+      <span>CSRF защита включена по умолчанию.</span>
+    </footer>
+  </main>
+</body>
+</html>
